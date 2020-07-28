@@ -32,6 +32,8 @@ public class ClassPathRpcScanner extends ClassPathBeanDefinitionScanner{
         super(registry);
     }
 
+
+
     public Set<BeanDefinitionHolder> doScan(String... basePackages) {
         Set<BeanDefinitionHolder> beanDefinitions = super.doScan(basePackages);
 
@@ -44,6 +46,22 @@ public class ClassPathRpcScanner extends ClassPathBeanDefinitionScanner{
         }
 
         return beanDefinitions;
+    }
+
+
+    private void processBeanDefinitions(Set<BeanDefinitionHolder> beanDefinitions) {
+
+        GenericBeanDefinition definition;
+
+        for (BeanDefinitionHolder holder : beanDefinitions) {
+
+            definition = (GenericBeanDefinition) holder.getBeanDefinition();
+            definition.getConstructorArgumentValues().addGenericArgumentValue(definition.getBeanClassName());
+            definition.setBeanClass(this.rpcFactoryBean.getClass());
+
+            definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
+            System.out.println(holder);
+        }
     }
 
     public void registerFilters() {
@@ -76,21 +94,7 @@ public class ClassPathRpcScanner extends ClassPathBeanDefinitionScanner{
             }
         });
     }
-    private void processBeanDefinitions(
-            Set<BeanDefinitionHolder> beanDefinitions) {
 
-        GenericBeanDefinition definition;
-
-        for (BeanDefinitionHolder holder : beanDefinitions) {
-
-            definition = (GenericBeanDefinition) holder.getBeanDefinition();
-            definition.getConstructorArgumentValues().addGenericArgumentValue(definition.getBeanClassName());
-            definition.setBeanClass(this.rpcFactoryBean.getClass());
-
-            definition.setAutowireMode(AbstractBeanDefinition.AUTOWIRE_BY_TYPE);
-            System.out.println(holder);
-        }
-    }
 
     protected boolean isCandidateComponent(AnnotatedBeanDefinition beanDefinition) {
         return beanDefinition.getMetadata().isInterface() && beanDefinition.getMetadata().isIndependent();

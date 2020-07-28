@@ -1,5 +1,8 @@
 package com.viewscenes.netsupervisor.entity;
 
+import org.springframework.stereotype.Component;
+
+@Component
 public class Dog {
 
     private String name;
