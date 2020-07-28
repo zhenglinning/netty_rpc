@@ -56,6 +56,16 @@ public class NettyClient {
                     //创建NIOSocketChannel成功后，在进行初始化时，将它的ChannelHandler设置到ChannelPipeline中，用于处理网络IO事件
                     protected void initChannel(SocketChannel channel) throws Exception {
                         ChannelPipeline pipeline = channel.pipeline();
+                        // IdleStateHandler 心跳机制
+                        /*
+    readerIdleTime读空闲超时时间设定，如果channelRead()方法超过readerIdleTime时间未被调用则会触发超时事件调用userEventTrigger()方法；
+
+    writerIdleTime写空闲超时时间设定，如果write()方法超过writerIdleTime时间未被调用则会触发超时事件调用userEventTrigger()方法；
+
+    allIdleTime所有类型的空闲超时时间设定，包括读空闲和写空闲；
+
+    unit时间单位，包括时分秒等；
+                         */
                         pipeline.addLast(new IdleStateHandler(0, 0, 30));
                         pipeline.addLast(new JSONEncoder());
                         pipeline.addLast(new JSONDecoder());
