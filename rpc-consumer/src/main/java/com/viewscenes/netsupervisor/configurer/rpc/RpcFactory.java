@@ -26,7 +26,9 @@ public class RpcFactory<T> implements InvocationHandler {
     @Autowired
     NettyClient client;
 
-    Logger logger = LoggerFactory.getLogger(this.getClass());
+    public RpcFactory() {
+        System.out.println("222222222222--- RpcFactory 已创建");
+    }
 
     public Object invoke(Object proxy, Method method, Object[] args) throws Throwable {
         if (Object.class.equals(method.getDeclaringClass())) {

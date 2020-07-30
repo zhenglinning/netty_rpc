@@ -10,6 +10,8 @@ import org.springframework.util.StringUtils;
 
 /**
  * Created by MACHENIKE on 2018-12-03.
+    类似于 mybatis Mapper扫描器
+ org.mybatis.spring.mapper.MapperScannerConfigurer
  */
 @Component
 public class RpcScannerConfigurer implements BeanDefinitionRegistryPostProcessor {

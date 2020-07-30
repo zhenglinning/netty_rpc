@@ -19,6 +19,9 @@ public class ServiceFactory<T> implements FactoryBean<T> {
         this.interfaceType = interfaceType;
     }
 
+    public ServiceFactory() {
+    }
+
     @Override
     public T getObject() throws Exception {
         //这里主要是创建接口对应的实例，便于注入到spring容器中

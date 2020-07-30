@@ -4,7 +4,6 @@ import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
 import com.viewscenes.netsupervisor.entity.InfoUser;
 import com.viewscenes.netsupervisor.service.InfoUserService;
-import com.viewscenes.netsupervisor.service.PersonService;
 import com.viewscenes.netsupervisor.util.IdUtil;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
@@ -25,8 +24,6 @@ public class IndexController {
 
     Logger logger = LoggerFactory.getLogger(this.getClass());
 
-    @Autowired
-    PersonService personService;
 
     @Autowired
     InfoUserService userService;

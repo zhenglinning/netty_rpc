@@ -1,0 +1,93 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<beans xmlns="http://www.springframework.org/schema/beans"
+	xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance"
+	xmlns:context="http://www.springframework.org/schema/context"
+	xmlns:aop="http://www.springframework.org/schema/aop"
+	xmlns:tx="http://www.springframework.org/schema/tx"
+	xsi:schemaLocation="
+        http://www.springframework.org/schema/beans
+        http://www.springframework.org/schema/beans/spring-beans.xsd
+        http://www.springframework.org/schema/context
+        http://www.springframework.org/schema/context/spring-context.xsd
+        http://www.springframework.org/schema/tx
+        http://www.springframework.org/schema/tx/spring-tx.xsd
+        http://www.springframework.org/schema/aop
+        http://www.springframework.org/schema/aop/spring-aop.xsd">
+
+	<!-- ================================= IoC ================================== -->
+
+	<!-- 注册数据源：C3P0，从属性文件读取DB连接四要素 -->
+	<bean id="myDataSource" class="com.mchange.v2.c3p0.ComboPooledDataSource">
+		<property name="driverClass" value="${jdbc.driver}"/>
+		<property name="jdbcUrl" value="${jdbc.url}"/>
+		<property name="user" value="${jdbc.user}"/>
+		<property name="password" value="${jdbc.password}"/>
+	</bean>
+
+	<!-- 注册属性文件 -->
+	<context:property-placeholder location="classpath:jdbc.properties"/>
+
+	<!-- 注册SqlSessionFactory -->
+	<bean id="mySqlSessionFactory" class="org.mybatis.spring.SqlSessionFactoryBean">
+		<property name="dataSource" ref="myDataSource"/>
+		<property name="configLocation" value="classpath:mybatis.xml"/>
+	</bean>
+
+	<!-- 生成Dao的代理对象 -->
+	<bean id="studentDao" class="org.mybatis.spring.mapper.MapperFactoryBean">
+		<property name="sqlSessionFactory" ref="mySqlSessionFactory"/>
+		<property name="mapperInterface" value="com.bjpowernode.dao.IStudentDao"/>
+	</bean>
+	<!-- 配置Mapper扫描器：会为指定的基本包中每一个接口生成一个Dao的代理对象
+	 -->
+	<!--<bean class="org.mybatis.spring.mapper.MapperScannerConfigurer">-->
+		<!--<property name="sqlSessionFactoryBeanName" value="mySqlSessionFactory"/>-->
+		<!--<property name="basePackage" value="com.bjpowernode.dao"/>-->
+	<!--</bean>-->
+
+	<!-- 注册Service -->
+	<bean id="studentService" class="com.bjpowernode.service.StudentServiceImpl">
+		<property name="dao" ref="studentDao"/>
+	</bean>
+
+	<!-- ================================= IoC ================================== -->
+
+	<!-- 注册事务管理器 -->
+	<!--<bean id="myTransactionManager" class="org.springframework.jdbc.datasource.DataSourceTransactionManager">-->
+		<!--<property name="dataSource" ref="myDataSource"/>-->
+	<!--</bean>-->
+	<!---->
+	<!--&lt;!&ndash; 注册事务通知 &ndash;&gt;-->
+	<!--<tx:advice id="txAdvice" transaction-manager="myTransactionManager">-->
+		<!--<tx:attributes>-->
+			<!--<tx:method name="add*" isolation="DEFAULT" propagation="REQUIRED"/>-->
+			<!--<tx:method name="remove*" isolation="DEFAULT" propagation="REQUIRED"/>-->
+			<!--<tx:method name="modify*" isolation="DEFAULT" propagation="REQUIRED"/>-->
+			<!--<tx:method name="find*" isolation="DEFAULT" propagation="REQUIRED" read-only="true"/>-->
+		<!--</tx:attributes>-->
+	<!--</tx:advice>-->
+	<!--&lt;!&ndash; AOP配置 &ndash;&gt;-->
+	<!--<aop:config>-->
+		<!--<aop:pointcut expression="execution(* *..service.*.*(..))" id="studentPointcut"/>-->
+		<!--<aop:advisor advice-ref="txAdvice" pointcut-ref="studentPointcut"/>-->
+	<!--</aop:config>-->
+
+</beans>
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -2,8 +2,9 @@ package com.viewscenes.netsupervisor.entity;
 
 import org.springframework.stereotype.Component;
 
-@Component
 public class Cat {
+
+    private Person person;
 
     private String name;
 
@@ -12,6 +13,10 @@ public class Cat {
     private int age;
 
     private String addr;
+
+    public void setPerson(Person person) {
+        this.person = person;
+    }
 
     public String getName() {
         return name;

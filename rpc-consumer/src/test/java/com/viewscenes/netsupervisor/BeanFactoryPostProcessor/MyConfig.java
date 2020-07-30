@@ -14,10 +14,10 @@ import org.springframework.stereotype.Component;
 @Import(MyImportBeanDefinitionRegistrar.class)
 public class MyConfig {
 
-//    @Bean
-//    public Cat cat() {
-//        return new Cat();
-//    }
+    @Bean
+    public Cat cat() {
+        return new Cat();
+    }
 //
 //    @Bean
 //    public Person person() {

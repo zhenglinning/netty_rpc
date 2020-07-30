@@ -1,5 +1,7 @@
 package com.viewscenes.netsupervisor.entity;
 
+import org.springframework.stereotype.Component;
+
 import java.io.Serializable;
 
 /**
@@ -8,6 +10,7 @@ import java.io.Serializable;
  * @author: shiqizhen
  * @create: 2018-11-30 10:11
  **/
+@Component
 public class InfoUser  {
 
     /**
