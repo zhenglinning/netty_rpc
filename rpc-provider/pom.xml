@@ -6,7 +6,6 @@
 	<groupId>com.viewscenes.netsupervisor</groupId>
 	<artifactId>rpc-provider</artifactId>
 	<version>0.0.1-SNAPSHOT</version>
-	<packaging>jar</packaging>
 
 	<name>rpc-provider</name>
 	<description>Demo project for Spring Boot</description>
@@ -95,6 +94,14 @@
 			<artifactId>spring-tx</artifactId>
 			<version>4.1.7.RELEASE</version>
 		</dependency>
+
+
+		<dependency>
+			<groupId>groupId</groupId>
+			<artifactId>api</artifactId>
+			<version>1.0-SNAPSHOT</version>
+		</dependency>
+
 
 	</dependencies>
 

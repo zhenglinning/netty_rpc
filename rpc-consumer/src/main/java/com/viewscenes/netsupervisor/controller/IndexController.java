@@ -2,7 +2,7 @@ package com.viewscenes.netsupervisor.controller;
 
 import com.alibaba.fastjson.JSON;
 import com.alibaba.fastjson.JSONObject;
-import com.viewscenes.netsupervisor.entity.InfoUser;
+import com.viewscenes.netsupervisor.InfoUser;
 import com.viewscenes.netsupervisor.service.InfoUserService;
 import com.viewscenes.netsupervisor.util.IdUtil;
 import org.slf4j.Logger;

@@ -1,6 +1,5 @@
 package com.viewscenes.netsupervisor.configurer.rpc;
 
-import com.viewscenes.netsupervisor.entity.InfoUser;
 import org.springframework.beans.factory.FactoryBean;
 import org.springframework.beans.factory.annotation.Autowired;
 

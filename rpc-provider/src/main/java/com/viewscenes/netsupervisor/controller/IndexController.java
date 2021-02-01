@@ -1,7 +1,7 @@
 package com.viewscenes.netsupervisor.controller;
 
 import com.alibaba.fastjson.JSONObject;
-import com.viewscenes.netsupervisor.entity.InfoUser;
+import com.viewscenes.netsupervisor.InfoUser;
 import org.slf4j.Logger;
 import org.slf4j.LoggerFactory;
 import org.springframework.stereotype.Controller;
